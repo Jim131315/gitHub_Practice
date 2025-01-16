@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <!-- 載入 Babel 獨立版本，將 JSX 和 ES6+ 語法轉譯為瀏覽器可執行的 JavaScript -->
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <title>React教學</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="text/babel">
+      const person = [
+        {
+          title: "綠色馬卡龍",
+          price: 120,
+          quantity: 3,
+        },
+        {
+          title: "粉係馬卡龍",
+          price: 120,
+          quantity: 2,
+        },
+        {
+          title: "甜蜜左擁右抱",
+          price: 200,
+          quantity: 7,
+        },
+      ];
+
+      function App() {
+        const { useState } = React;
+        const [count, setCount] = useState(0);
+        return (
+          <div>
+            <h1>gitHub_Practice</h1>
+            <button
+              onClick={() => {
+                setCount(count + 1);
+              }}
+            >
+              增加
+            </button>
+            <table>
+              <thead>
+                <tr>
+                  <th width="200">品名</th>
+                  <th>單價</th>
+                  <th>數量</th>
+                  <th width="150">小計</th>
+                </tr>
+              </thead>
+              <tbody>
+                {person.map((item, index) => {
+                  return (
+                    <tr key={index}>
+                      <td>{item.title}</td>
+                      <td>${item.price}</td>
+                      <td>{item.quantity}</td>
+                      <td>${item.price * item.quantity}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td colSpan="3">總計：</td>
+                  <td>NT$1,780</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        );
+      }
+      ReactDOM.createRoot(document.querySelector("#app")).render(<App />);
+    </script>
+  </body>
+</html>
